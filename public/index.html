@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esp32服务器网页</title>
+    <style>
+        *{margin: 0;
+        padding: 0;}
+        button{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>开灯小网页</h1>
+    <button class="on">
+        开灯
+    </button>
+    <button class="off">
+        关灯
+    </button>
+    <script>
+        const onBtn = document.querySelector(".on");
+        const offBtn = document.querySelector(".off");
+        // 监听按钮点击事件
+        onBtn.addEventListener("click",(e)=>{
+            fetch("/on",{
+                method:"get",
+            }).then(e=>{
+                console.log("消息",e);
+            }).catch(error=>{
+                console.log("报错了",error);
+            })
+        })
+        offBtn.addEventListener("click",(e)=>{
+            fetch("/off").then(e=>{
+                console.log("消息",e);
+            }).catch(error=>{
+                console.log("报错了",error);
+            })
+        })
+​
+    </script>
+</body>
+​
+</html>
